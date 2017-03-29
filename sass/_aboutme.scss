@@ -1,0 +1,233 @@
+.aboutme {
+
+  section {
+    display: inline-block;
+    margin: 10px 0 0 0;
+  }
+
+  .button-skills-aboutme.section {
+    width: 48%;
+    float: left;
+    margin-bottom: 25px;
+    line-height: 58px;
+  }
+
+  .button-skills-aboutme.section:nth-of-type(even) {
+    margin-left: 4%;
+  }
+
+  [class*="per"] {
+    @include ellipsis();
+  }
+
+  [class*="per"] span {
+    display: block;
+    height: 100%;
+    background: #04b4dc;
+    padding-left: 20px;
+    border-radius: 10px 0 0 10px;
+  }
+
+  // loop through the per_70 classes.
+  // this gives a % of width which it extends over background
+
+  $percentage: 10;
+
+  @for $i from 1 through $percentage {
+    .per_#{$i * 10} span {
+      width: ((100 / $percentage) * $i) * 1%;
+    }
+  }
+
+  .per_100 span {
+    border-radius: 10px;
+  }
+
+  img[src$="twitter.svg"] {
+
+  }
+}
+
+// animation is only for desktop browsers and high spec tablets like the iPad
+@include breakpoint(mintablet) {
+
+  .aboutme {
+
+    [class*="per"] span {
+
+      @include transform("scaleX(0)");
+      opacity: 0;
+
+      -webkit-animation: fadeIn ease-out 1;
+      animation: fadeIn ease-out 1;
+      -webkit-animation-fill-mode: forwards;
+      animation-fill-mode: forwards;
+      -webkit-animation-duration: 3s;
+      animation-duration: 3s;
+      -webkit-animation-delay: 1s;
+      animation-delay: 1s;
+    }
+
+    [class*="per"]:last-of-type {
+
+      -webkit-animation-name: shake;
+      -webkit-animation-delay: 6s;
+      -webkit-animation-duration: 0.8s;
+      -webkit-transform-origin: 50% 50%;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+
+      animation-name: shake;
+      animation-delay: 6s;
+      animation-duration: 0.8s;
+      transform-origin: 50% 50%;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+}
+
+.ie9 {
+  .aboutme {
+    [class*="per"] span {
+      @include transform("scaleX(1)");
+      opacity: 1;
+    }
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: scaleX(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@-webkit-keyframes shake {
+  0% {
+    -webkit-transform: translate(2px, 1px) rotate(0deg);
+  }
+  10% {
+    -webkit-transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    -webkit-transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    -webkit-transform: translate(0px, 2px) rotate(0deg);
+  }
+  40% {
+    -webkit-transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    -webkit-transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    -webkit-transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    -webkit-transform: translate(2px, 1px) rotate(-1deg);
+  }
+  80% {
+    -webkit-transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    -webkit-transform: translate(2px, 2px) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(2px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(0px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(2px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(2px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+
+@include breakpoint(tablet) {
+
+  .aboutme {
+
+    section {
+      display: block;
+    }
+
+
+    div[id=left-large] {
+      width: auto;
+      float: none;
+      display: block;
+      margin: 0 0 0 0;
+    }
+
+    div[id=right-small] {
+      width: auto;
+      float: none;
+      display: block;
+    }
+  }
+}
+
+@include breakpoint(mobile) {
+
+  .aboutme {
+
+    .button-skills-aboutme.section {
+      width: 100%;
+      float: none;
+      margin-bottom: 20px;
+      line-height: 58px;
+    }
+
+    .button-skills-aboutme.section:nth-of-type(even) {
+      margin-left: 0;
+    }
+  }
+}

@@ -1,0 +1,197 @@
+div[id=header] {
+  height: $headerHeight;
+  padding: 0 57px;
+  background: $topHeaderBackground;
+  position: relative;
+
+  // used in the checkbox hack
+  input[type=checkbox] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    display: none;
+  }
+
+  a:link {
+    color: white;
+    @include transitions(color 0.3s);
+  }
+  a:visited {
+    color: white;
+  }
+  a:focus {
+    color: $textOneHover;
+  }
+  a:hover {
+    color: $textOneHover;
+  }
+  a:active, a.active {
+    color: $textOneHover;
+  }
+
+  .logo {
+    a:focus {
+      color: white;
+    }
+    a:hover {
+      color: white;
+    }
+    a:active, a.active {
+      color: white;
+    }
+  }
+}
+
+@-webkit-keyframes bugfix {
+  from {
+    margin: 0;
+  }
+  to {
+    margin: 0;
+  }
+}
+
+@media (max-width: $media_breakpoint_tablet) and (-webkit-min-device-pixel-ratio: 1.5) {
+
+  body {
+    -webkit-animation: bugfix infinite 1s;
+  }
+
+}
+
+@supports (-webkit-animation-name: bugfix) {
+  body {
+    -webkit-animation: none;
+  }
+}
+
+@include breakpoint(wide) {
+
+  div[id=header] {
+    padding: 0 4.172767203513909%;
+  }
+}
+
+@-webkit-keyframes swipeIn {
+  from {
+    -webkit-transform: translateX(-200%);
+  }
+  to {
+    -webkit-transform: translateX(0%);
+  }
+}
+
+@keyframes swipeIn {
+  from {
+    transform: translateX(-200%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@include breakpoint(tablet) {
+
+  div[id=header] {
+    // checkbox hack
+    // makes the menu appear and disappear on click
+    input[type=checkbox] ~ #navigation-wrapper li {
+      -webkit-transform: translateX(-200%);
+      transform: translateX(-200%);
+    }
+
+    $percentage: 5;
+
+    // loops through the navigation list items to create delay staggered animation
+    @for $i from 1 through $percentage {
+      input[type=checkbox]:checked ~ #navigation-wrapper li:nth-child(#{$i * 1}) {
+        -webkit-animation: swipeIn 0.5s cubic-bezier(0.09, 0.68, 0, 0.99) #{0.1 + ($i / 10)}s;
+        -webkit-animation-fill-mode: forwards;
+        animation: swipeIn 0.5s cubic-bezier(0.09, 0.68, 0, 0.99) #{0.1 + ($i / 10)}s;
+        animation-fill-mode: forwards;
+      }
+    }
+
+    label.handheld-cross {
+      color: transparent;
+      margin: 18px 0 0 0;
+      width: 42px;
+      height: 42px;
+      display: block;
+      background: $menu;
+      float: right;
+      cursor: pointer;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      &.active {
+        background: $menuHover;
+      }
+    }
+  }
+}
+
+div[id=logo-wrapper] {
+  float: left;
+
+  a {
+    text-decoration: none;
+    white-space: nowrap;
+  }
+}
+
+div[id=navigation-wrapper] {
+  float: right;
+  li {
+    display: inline;
+    list-style: none;
+    line-height: $headerHeight;
+    + li {
+      margin: 0 0 0 24px;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
+
+@include breakpoint(tablet) {
+
+  div[id=navigation-wrapper] {
+    pointer-events: none;
+    float: none;
+    position: absolute;
+    top: $headerHeight;
+    left: 0;
+    z-index: 10;
+    background: transparent;
+    width: 100%;
+
+    li {
+      pointer-events: auto;
+      display: block;
+      list-style: none;
+      height: 55px;
+      line-height: 55px;
+      background: $navigation_handheld;
+      border-bottom: 1px solid $navigation_handheld_border;
+      border-right: 1px solid $navigation_handheld_border;
+      &:last-of-type {
+        border-bottom: none;
+      }
+      + li {
+        margin: 0 0 0 0;
+      }
+      a {
+        display: inline-block;
+        width: 100%;
+        padding: 0 0 0 4.172767203513909%;
+        &:hover {
+          background: $navigation_handheld_hover;
+        }
+      }
+    }
+  }
+}

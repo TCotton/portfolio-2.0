@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+@media screen {
+
+  @import 'reset';
+  @import 'variables';
+  @import 'mixins';
+
+  body {
+    font-size: #{$baseFontSize};
+    font-family: $baseFontFamily;
+    line-height: #{$baseLineHeight}em;
+    background: transparent;
+  }
+
+  div[id=outer-content] {
+    min-height: 500px;
+  }
+
+}
+
+@import 'modules/animation';
+
+@media screen {
+
+  @include breakpoint('mobile') {
+
+    body {
+      font-size: 56.3%;
+      font-family: $baseFontFamily;
+      line-height: 2.5em;
+    }
+
+  }
+
+  @import 'modules/media_queries';
+  @import 'modules/scrollbars';
+  @import 'modules/svg';
+  @import 'modules/grid';
+  @import 'bem/modules/grid';
+  @import 'modules/typography';
+  @import 'modules/navigation';
+  @import 'modules/buttons';
+  @import 'modules/forms';
+  @import 'bem/modules/forms';
+  @import 'modules/icons';
+  @import 'modules/loader';
+  @import 'header';
+  @import 'homepage';
+  @import 'banner';
+  @import 'mywork';
+  @import 'sideprojects';
+  @import 'aboutme';
+  @import 'blog';
+  @import 'bem/blog-comments';
+  @import 'contact';
+  @import 'bem/contact';
+  @import 'admin';
+  @import 'footer';
+  @import 'modules/prism';
+  @import 'bem/modules/blog-experiment';
+
+}
+
+@import 'print';

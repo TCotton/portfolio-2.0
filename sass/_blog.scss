@@ -1,0 +1,450 @@
+.blog {
+
+  article {
+    border-bottom: 1px solid $boxBorder;
+    margin: 0 0 25px 0;
+    padding: 0 0 25px 0;
+
+    ol {
+      list-style-position: inside;
+    }
+
+    .scroll-top {
+      color: lighten($textTwo, 10%);
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    header {
+      border: 1px solid $boxBorder;
+      background-clip: content-box;
+      padding: 4px;
+      overflow: hidden;
+      width: 100%;
+      text-align: center;
+      margin: 0 0 15px 0;
+      &:hover {
+        border: 1px solid darken($boxBorder, 20%);
+      }
+    }
+
+    p.date a {
+      color: lighten($textTwo, 10%);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .svg-container-left {
+      float: left;
+      margin-right: 1em;
+      margin-bottom: inherit;
+      max-width: 33%;
+      object-fit: cover;
+    }
+
+    .svg-container-right {
+      float: right;
+      max-width: 33%;
+      margin-left: 2em;
+      margin-bottom: 1em;
+      &:first-child {
+        opacity: 0.75;
+      }
+      &:first-of-type {
+        opacity: 0.75;
+      }
+    }
+
+    .image-container {
+      border: 1px solid $boxBorder;
+      background-clip: content-box;
+      padding: 4px;
+      overflow: hidden;
+      width: 100%;
+      text-align: center;
+      img {
+        object-fit: contain;
+        object-position: 0;
+      }
+    }
+
+    .image-container-rejectjs {
+      min-height: 812px;
+      margin-bottom: 1.5625em;
+      @extend .image-container;
+    }
+
+    figure {
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    figcaption {
+      @include font-calculator($baseFontFamily, 14px, 0);
+      text-align: right;
+    }
+
+    iframe {
+      margin: 0 0 20px 0;
+    }
+
+    .twitter-container {
+      margin-bottom: 5vh;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      padding-top: 30px;
+      height: 0;
+      overflow: hidden;
+      margin-bottom: 1.5625em;
+    }
+
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    pre {
+      white-space: pre;
+      overflow: auto;
+    }
+
+    blockquote {
+      background: darken(#FDFDFD, 1%);
+      margin: 1.5em 10px 1.5em 0;
+      padding: 0.5em 3em 0.5em 0.5em;
+      position: relative;
+      clip-path: polygon(0% 0%, 100% 0%, 96% 100%, 0% 100%);
+      &:hover {
+        content: " (" attr(cite) ")";
+      }
+    }
+
+    blockquote::before {
+      color: #ccc;
+      content: "\201C";
+      font-size: 5em;
+      line-height: 0.1em;
+      margin-right: 0.2em;
+      vertical-align: -0.45em;
+    }
+
+    blockquote.no-open-quote {
+      border: 1px solid #ececec;
+    }
+
+    blockquote.no-open-quote::before {
+      content: no-open-quote;
+    }
+
+    blockquote::after {
+      content: no-close-quote;
+    }
+    blockquote p {
+      display: inline;
+      line-height: 1em;
+    }
+
+    .last-quote::after {
+      color: #ccc;
+      content: close-quote;
+      font-size: 5em;
+      line-height: 0.1em;
+      margin-left: 0.2em;
+      vertical-align: 0.45em;
+    }
+
+    aside {
+      width: 33%;
+      margin: 0 0 0 2%;
+      padding: 0 0 0 2%;
+      float: right;
+      border-left: 1px solid $boxBorder;
+    }
+
+    aside:empty {
+      display: none;
+    }
+
+    .blog-data {
+      width: 100%;
+      border: 1px solid $border;
+      caption {
+        padding: 0 0 10px 0;
+        font-style: italic;
+      }
+      tr:first-of-type th {
+        padding: 5px;
+        color: darken($textFour, 10%);
+      }
+      th, td {
+        text-align: left;
+        padding: 5px;
+      }
+      tr:not(:first-of-type) th {
+        color: darken($textFour, 5%);
+      }
+    }
+
+  }
+
+  .user-comments {
+    border-bottom: 1px solid $boxBorder;
+    margin: 0 0 25px 0;
+    padding: 0 0 25px 0;
+    display: inline-block;
+    white-space: pre-line;
+    p:first-of-type {
+      font-weight: 600;
+    }
+  }
+
+  #right-small {
+
+    // changing the margin for the list items in the Category sidebar section
+    h4.content-title:nth-of-type(2) + ul li:not(:last-of-type) {
+      margin-bottom: 0;
+    }
+
+    a {
+      color: lighten($textTwo, 10%);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    h4.content-title + ul {
+      margin-bottom: 25px;
+      display: inline-block;
+    }
+  }
+}
+
+@include breakpoint(mobile) {
+
+  .blog {
+
+    article {
+      margin: 0 0 20px 0;
+      padding: 0 0 20px 0;
+
+      header {
+        margin: 0 0 10px 0;
+      }
+
+      .svg-container-left, .svg-container-right {
+        max-width: 50vw;
+      }
+    }
+
+    #right-small {
+
+      h4.content-title + ul {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+}
+
+#more-posts {
+
+  cursor: pointer;
+
+  .down-arrow {
+    width: 55px;
+    height: 54px;
+    display: inline-block;
+    cursor: pointer;
+    background-size: contain;
+    background: url('/images/svg/down-arrow.svg') no-repeat center center;
+    &:hover {
+      background: url('/images/svg/down-arrow-hover.svg') no-repeat center center;
+    }
+  }
+
+  > div:first-of-type {
+    float: right;
+    width: 160px;
+    text-align: right;
+  }
+
+  > div:last-of-type {
+    float: right;
+  }
+
+}
+
+#pagination {
+
+  text-align: center;
+
+  .left-p {
+    float: left;
+    width: 55px;
+    height: 54px;
+    margin: 0 14px 14px 0;
+  }
+
+  .center-p {
+    float: left;
+    margin: 0 7px 0 0;
+    @include calc('width', '100% - (55px * 2) - (14px * 2)');
+  }
+
+  .right-p {
+    float: left;
+    width: 55px;
+    height: 54px;
+  }
+
+  [class*="pag"] {
+    width: 55px;
+    height: 54px;
+    display: block;
+    float: left;
+    cursor: pointer;
+    background-size: contain;
+    margin: 0 14px 14px 0;
+
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+
+  // the first pagination item which is the left arrow d
+
+  .left-p [class*="pag"] {
+    background: $leftArrow;
+    &:hover {
+      background: $leftArrowHover;
+    }
+  }
+
+  $percentage: 10;
+
+  // loops through the ten different number background images for the pagination
+
+  @for $i from 1 through $percentage {
+    .pag#{$i * 1} {
+      background: url('/images/svg/solid#{((10 / $percentage) * $i)}.svg') no-repeat center center;
+      &:hover {
+        background: url('/images/svg/outline#{((10 / $percentage) * $i)}.svg') no-repeat center center;
+      }
+    }
+  }
+
+  // the last pagination item which is the the right arrow
+
+  .right-p [class*="pag"] {
+    background: $rightArrow;
+    &:hover {
+      background: $rightArrowHover;
+    }
+  }
+}
+
+@media (min-width: $media_breakpoint_mobile) and (max-width: $media_breakpoint_tablet) {
+
+  .blog {
+
+    article {
+
+      .image-container-rejectjs {
+        min-height: 700px;
+      }
+
+    }
+
+  }
+
+}
+
+@include breakpoint(tablet) {
+
+  .blog {
+
+    #left-large {
+      width: auto;
+      float: none;
+      display: block;
+      margin: 0 0 0 0;
+    }
+
+    #right-small {
+      display: none;
+    }
+
+    &.blog-single {
+
+      #left-large {
+        // set width 100% instead of auto or images are not responsive on Firefox
+        width: 100%;
+        margin: 0 0 20px 0;
+        display: inline-block;
+      }
+
+      #right-small {
+        width: auto;
+        float: none;
+        display: block;
+        margin: 0 0 0 0;
+        clear: both;
+      }
+    }
+  }
+}
+
+@include breakpoint(mobile) {
+
+  .blog {
+    article {
+      aside {
+        display: none;
+      }
+      .image-container-rejectjs {
+        min-height: 350px;
+      }
+    }
+    &.blog-single {
+
+      #right-small {
+        display: none;
+      }
+    }
+  }
+
+  #pagination {
+
+    text-align: center;
+
+    .left-p {
+      float: left;
+      width: 55px;
+      height: 54px;
+      margin: 0 14px 14px 0;
+    }
+
+    .center-p {
+      display: none;
+    }
+
+    .right-p {
+      float: right;
+      width: 55px;
+      height: 54px;
+    }
+
+  }
+
+}

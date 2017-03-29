@@ -1,0 +1,120 @@
+// Print styles.
+// Inlined to avoid the additional HTTP request:
+@media print {
+  *,
+  *:before,
+  *:after {
+    // !important is essential in print style sheet
+    // scss-lint:disable ImportantRule
+    background: transparent !important;
+    // !important is essential in print style sheet
+    // scss-lint:disable ImportantRule
+    color: #000 !important;
+    // Black prints faster:
+    // http://www.sanbeiji.com/archives/953
+    // !important is essential in print style sheet
+    // scss-lint:disable ImportantRule
+    box-shadow: none !important;
+    // !important is essential in print style sheet
+    // scss-lint:disable ImportantRule
+    text-shadow: none !important;
+  }
+
+  body {
+    font-size: 62.5%;
+    font-family: 'Open Sans', Roboto, 'Droid Sans', 'Helvetica Neue', Helvetica, sans-serif;
+    line-height: 2.5em;
+  }
+
+  div[id=right-small],
+  div[id=banner],
+  div[id=header],
+  div[id=footer] {
+    display: none;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 18px;
+  }
+
+  p,
+  li {
+    font-size: 16px;
+  }
+
+  div[id=main-content] {
+    padding: 5px;
+    width: auto;
+    float: none;
+    display: block;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: ' (' attr(href) ')';
+  }
+
+  abbr[title]:after {
+    content: ' (' attr(title) ')';
+  }
+
+  // Don' t show links that are fragment identifiers,
+  //  or use the ` javascript:` pseudo protocol
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: '';
+  }
+
+  blockquote::before {
+    content: open-quote;
+  }
+
+  blockquote::after {
+    content: close-quote;
+  }
+
+  // Printing Tables:
+  // ttp://css-discuss.incutio.com/wiki/Printing_Tables
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    // !important is essential in print style sheet
+    // scss-lint:disable ImportantRule
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+}

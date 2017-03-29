@@ -1,0 +1,434 @@
+//Light 300
+//Light 300 Italic
+//Normal 400
+//Normal 400 Italic
+//Semi-Bold 600
+//Semi-Bold 600 Italic
+//Bold 700
+//Bold 700 Italic
+//Extra-Bold 800
+//Extra-Bold 800 Italic
+h1.logo {
+  @include font-calculator($secondaryFontFamily, 35px, 0);
+  line-height: $headerHeight;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+}
+
+.navigation li {
+  @include font-calculator($baseFontFamily, 15px, 0);
+  text-transform: uppercase;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+}
+
+h2.page-top-title {
+  @include font-calculator($baseFontFamily, 40px, 0.5);
+  font-weight: 300;
+  color: white;
+  line-height: 40px;
+}
+
+p.page-top-text {
+  @include font-calculator($baseFontFamily, 18px);
+  font-weight: 300;
+  color: white;
+}
+
+p.page-top-text-banner {
+  @include font-calculator($baseFontFamily, 18px, 0);
+  font-weight: 300;
+  color: white;
+}
+
+.front-page-bottom-header {
+  @include font-calculator($baseFontFamily, 80px, 1.5);
+  line-height: 40px;
+  font-weight: 300;
+  color: white;
+}
+
+.front-page-bottom-text {
+  @include font-calculator($baseFontFamily, 14px, 0);
+  font-weight: 600;
+  color: white;
+  clear: both;
+}
+
+.content-title {
+  @include font-calculator($baseFontFamily, 30px, 1.5);
+  font-weight: 300;
+  color: $textThree;
+}
+
+@include breakpoint("wide") {
+
+  .content-title {
+    line-height: 40px;
+  }
+}
+
+#recommended-article header {
+  @include font-calculator($baseFontFamily, 16px);
+  font-weight: 400;
+  color: $textTwo;
+  line-height: 120%;
+}
+
+#recommended-article section {
+  @include font-calculator($baseFontFamily, 16px, 0);
+  font-weight: 400;
+  color: $textTwo;
+}
+
+@include breakpoint(tablet) {
+  #recommended-article header {
+    line-height: 140%;
+  }
+
+  #recommended-article section {
+    line-height: 140%;
+  }
+}
+
+@include breakpoint(mobile) {
+
+  #recommended-article section {
+    display: none;
+  }
+}
+
+h3.blog-title {
+  @include font-calculator($baseFontFamily, 40px, 1.5);
+  font-weight: 300;
+  line-height: 45px;
+  color: $textTwo;
+}
+
+.blog article h4 {
+  @include font-calculator($baseFontFamily, 26px);
+  font-weight: 600;
+  color: $textTwo;
+}
+
+/* little mixin for standard blog css attributes and values */
+@mixin contentText($tag) {
+  .content-text #{$tag} {
+    @include font-calculator($baseFontFamily, 16px);
+    color: $textTwo;
+    @content;
+  }
+}
+
+@include contentText('ul') {
+  font-weight: 400;
+  list-style: none;
+}
+
+.blog-single.content-text section li {
+  padding-left: 15px;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    height: 8px;
+    width: 8px;
+    background: lighten($textTwo, 10%);
+    display: block;
+    border-radius: 100%;
+  }
+}
+
+@include breakpoint(tablet) {
+
+  .blog-single.content-text section ul {
+    font-size: inherit;
+  }
+
+  .blog-single.content-text section li {
+    @include font-calculator($baseFontFamily, 16px);
+    padding-left: 0;
+    position: relative;
+    &::before {
+      content: none;
+    }
+  }
+}
+
+@include contentText('p') {
+  font-weight: 400;
+}
+
+@include contentText('p.comment-form-failure') {
+  padding-bottom: 1em;
+}
+
+@include contentText('.form-label') {
+  font-weight: 600;
+  float: left;
+}
+
+@include contentText('p.bold') {
+  font-weight: 700;
+}
+
+#more-posts h6 {
+  @include font-calculator($baseFontFamily, 28px, 0);
+  font-weight: 300;
+  color: $textTwo;
+  line-height: 54px;
+}
+
+@include breakpoint(mobile) {
+  @include contentText('p') {
+    @include word-wrap();
+  }
+}
+
+@include contentText('p.date') {
+  font-weight: 400;
+  font-style: italic;
+}
+
+.content-text section > div a {
+  color: $textTwo;
+}
+
+.content-text .user-comments section {
+  @include font-calculator($baseFontFamily, 16px, 0);
+  color: $textTwo;
+}
+
+.comment-form-entry {
+  @include font-calculator($baseFontFamily, 16px);
+  color: $textTwo;
+  white-space: pre-line;
+}
+
+.content-text section > div table {
+  @include font-calculator($baseFontFamily, 16px);
+}
+
+.content-text section > div table caption {
+  font-weight: 400;
+  color: $textTwo;
+}
+
+.content-text section > div table th {
+
+}
+
+.content-text section > div table td {
+
+}
+
+.content-text section > div h3 {
+  @include font-calculator($baseFontFamily, 26px);
+  font-weight: 400;
+  color: $textTwo;
+}
+
+.content-text section > div h4 {
+  @include font-calculator($baseFontFamily, 24px);
+  font-weight: 400;
+  color: $textTwo;
+  line-height: 120%;
+}
+
+.content-text section > div h5 {
+  @include font-calculator($baseFontFamily, 20px);
+  font-weight: 400;
+  color: $textTwo;
+  line-height: 120%;
+}
+
+.content-text section > div h6 {
+  @include font-calculator($baseFontFamily, 18px);
+  font-weight: 400;
+  color: $textTwo;
+  line-height: 120%;
+}
+
+@include breakpoint(mobile) {
+
+  .content-text section > div h4, .content-text section > div h5, .content-text section > div h6 {
+    line-height: 120%;
+  }
+}
+
+.content-text section > div pre {
+  @include font-calculator('monospace, serif', 16px);
+}
+
+@include contentText('p.read-more') {
+  font-weight: 700;
+}
+
+p.minor-title {
+  @include font-calculator($baseFontFamily, 16px, 0);
+  color: $textTwo;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.blog #blog-content a:hover:after {
+  content: "(Link: " attr(href) ")";
+  color: #1d7a94;
+  background: #fff;
+  margin: 0 5px;
+  text-decoration: underline;
+}
+
+.content-text {
+
+  a.underline {
+    /* On the desktop this displays a URL of the external link above the link text */
+    text-decoration: none;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 11%, rgba(0, 0, 0, .3) 11%, rgba(0, 0, 0, .3) 16%, rgba(0, 0, 0, 0) 16%);
+    position: relative;
+
+    // displays pop up of link attribute if it is pointing to an external site
+    &[rel="external"]::after {
+      content: " " attr(href) " ";
+      position: absolute;
+      left: 20%;
+      bottom: 100%;
+      color: white;
+      background: $textTwo;
+      padding: 1px 5px;
+      opacity: 0;
+      @include transitions(opacity 0.5s);
+      white-space: nowrap;
+      pointer-events: none;
+      display: none;
+    }
+    &[rel="external"]:hover::after {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+    &:link {
+      color: $textTwo;
+    }
+    &:visited {
+      color: lighten($textTwo, 10%);
+    }
+    &:focus {
+      color: $textTwo;
+      background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 11%, rgba(0, 0, 0, .1) 11%, rgba(0, 0, 0, .1) 16%, rgba(0, 0, 0, 0) 16%);
+    }
+    &:hover {
+      color: $textTwo;
+      background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 11%, rgba(0, 0, 0, .1) 11%, rgba(0, 0, 0, .1) 16%, rgba(0, 0, 0, 0) 16%);
+
+    }
+    &:active {
+      color: $textTwo;
+      background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 11%, rgba(0, 0, 0, .1) 11%, rgba(0, 0, 0, .1) 16%, rgba(0, 0, 0, 0) 16%);
+    }
+  }
+}
+
+@include breakpoint(tablet) {
+
+  .content-text {
+
+    a.underline {
+      // hide external ::after on handheld devices - it is affecting the layout
+      &[rel="external"]::after {
+        display: none;
+      }
+    }
+  }
+}
+
+h4.blog-sidebar-header {
+  @include font-calculator($baseFontFamily, 30px);
+  font-weight: 300;
+  color: $textTwo;
+}
+
+.blog-sidebar-text p, ul.blog-sidebar-text {
+  @include font-calculator($baseFontFamily, 16px);
+  font-weight: 600;
+  color: $textTwo;
+}
+
+h3.contact-header {
+  @include font-calculator($baseFontFamily, 30px);
+  font-weight: 300;
+  color: $textTwo;
+}
+
+h3.project-header {
+  @include font-calculator($baseFontFamily, 26px, 0);
+  font-weight: 400;
+  color: white;
+  white-space: nowrap;
+}
+
+.footer-top-text p, ul.footer-top-text {
+  @include font-calculator($baseFontFamily, 20px);
+  font-weight: 300;
+  font-style: italic;
+  color: $textTwo;
+}
+
+.code-preview {
+  font-size: 12px;
+  color: $textTwo;
+  line-height: 16px;
+}
+
+p.footer-copyright {
+  @include font-calculator($baseFontFamily, 13px, 0);
+  line-height: $bottomFooterHeight;
+  color: white;
+  text-transform: capitalize;
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.admin-comments dt, .content-text aside dt {
+  @include font-calculator($baseFontFamily, 14px, 0);
+  font-weight: 600;
+}
+
+.admin-comments dd, .content-text aside dd {
+  @include font-calculator($baseFontFamily, 14px, 0.5);
+  font-weight: 400;
+}
+
+.content-text aside a {
+
+  text-decoration: none;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 11%, rgba(0, 0, 0, .3) 11%, rgba(0, 0, 0, .3) 16%, rgba(0, 0, 0, 0) 16%);
+
+  &:link {
+    color: $textTwo;
+  }
+  &:visited {
+    color: lighten($textTwo, 10%);
+  }
+  &:focus {
+    color: $textTwo;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 11%, rgba(0, 0, 0, .1) 11%, rgba(0, 0, 0, .1) 16%, rgba(0, 0, 0, 0) 16%);
+  }
+  &:hover {
+    color: $textTwo;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 11%, rgba(0, 0, 0, .1) 11%, rgba(0, 0, 0, .1) 16%, rgba(0, 0, 0, 0) 16%);
+
+  }
+  &:active {
+    color: $textTwo;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 11%, rgba(0, 0, 0, .1) 11%, rgba(0, 0, 0, .1) 16%, rgba(0, 0, 0, 0) 16%);
+  }
+
+}

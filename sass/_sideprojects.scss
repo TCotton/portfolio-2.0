@@ -1,0 +1,114 @@
+.side-projects {
+
+  .project-box-one,
+  .project-box-two,
+  .project-box-three {
+    margin-bottom: 30px;
+  }
+
+  [class*="project-box"] {
+    text-decoration: none;
+    background-color: $imageBackground;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: contain;
+    // lets the H3 title use animation to appear
+
+    &:hover {
+      header h3 {
+        opacity: 1;
+        @include transform('translateY(0)');
+      }
+    }
+
+  }
+
+  header {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+
+    h3 {
+      @include transitions('all 0.5s');
+      @include transform('translateY(30px)');
+      margin-top: 10%;
+      opacity: 0;
+    }
+
+  }
+}
+
+.no-webp .side-projects {
+
+  .project-box-one {
+    background-image: $sideFour;
+  }
+
+  .project-box-two {
+    background-image: $sideFive;
+  }
+
+  .project-box-three {
+    background-image: $sideSix;
+  }
+
+  .project-box-four {
+    background-image: $sideOne;
+  }
+
+  .project-box-five {
+    background-image: $sideThree;
+  }
+
+  .project-box-six {
+    background-image: $sideTwo;
+  }
+
+}
+
+.webp .side-projects {
+
+  .project-box-one {
+    background-image: $sideFourWebP;
+  }
+
+  .project-box-two {
+    background-image: $sideFiveWebP;
+  }
+
+  .project-box-three {
+    background-image: $sideSixWebP;
+  }
+
+  .project-box-four {
+    background-image: $sideOneWebP;
+  }
+
+  .project-box-five {
+    background-image: $sideThreeWebP;
+  }
+
+  .project-box-six {
+    background-image: $sideTwoWebP;
+  }
+
+}
+
+@include breakpoint('tablet') {
+
+  .side-projects {
+
+    .project-box-one,
+    .project-box-two,
+    .project-box-three,
+    .project-box-four {
+      margin-bottom: 33px;
+    }
+
+    .project-box-five,
+    .project-box-six {
+      margin-bottom: 0;
+    }
+  }
+}

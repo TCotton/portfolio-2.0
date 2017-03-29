@@ -1,0 +1,260 @@
+// Leave for now - could cause bugs
+// scss-lint:disable MergeableSelector
+.my-work {
+
+  [class*="project-box"] {
+    text-decoration: none;
+    background-color: $imageBackground;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: contain;
+
+    // lets the H3 title use animation to appear
+    &:hover {
+
+      header h3 {
+        opacity: 1;
+        @include transform('translateY(0)');
+      }
+
+    }
+
+  }
+
+}
+
+.webp .my-work {
+
+  .project-box-one {
+    background-image: $workSixWebP;
+  }
+
+  .project-box-two {
+    background-image: $workOneWebP;
+  }
+
+  .project-box-three {
+    background-image: $workTwoWebP;
+  }
+
+  .project-box-four {
+    background-image: $workThreeWebP;
+  }
+
+  .project-box-five {
+    background-image: $workFourWebP;
+  }
+
+  .project-box-six {
+    background-image: $workFiveWebP;
+  }
+
+}
+
+.no-webp .my-work {
+
+  .project-box-one {
+    background-image: $workSix;
+  }
+
+  .project-box-two {
+    background-image: $workOne;
+  }
+
+  .project-box-three {
+    background-image: $workTwo;
+  }
+
+  .project-box-four {
+    background-image: $workThree;
+  }
+
+  .project-box-five {
+    background-image: $workFour;
+  }
+
+  .project-box-six {
+    background-image: $workFive;
+  }
+
+}
+
+.my-work {
+
+  .project-box-one,
+  .project-box-two,
+  .project-box-three {
+    margin-bottom: 30px;
+  }
+
+  header {
+    position: absolute;
+    left: 2.5559105431309903%;
+    right: 2.5559105431309903%;
+    width: 94.8881789137%;
+    text-align: center;
+    z-index: 1;
+
+    h3 {
+      @include transitions('all 0.5s');
+      @include transform('translateY(30px)');
+      margin-top: 10%;
+      opacity: 0;
+    }
+
+  }
+
+  div[id=left-small] {
+
+    article {
+      border-bottom: 1px solid $boxBorder;
+      margin: 0 0 25px 0;
+      padding: 0 0 25px 0;
+    }
+  }
+
+  div[id=right-large] {
+
+    a {
+      text-decoration: none;
+    }
+
+    img {
+      border: 1px solid $boxBorder;
+      background-clip: content-box;
+      padding: 4px;
+      overflow: hidden;
+    }
+  }
+
+  .pagination {
+
+    [class*="pag"] {
+      width: 55px;
+      height: 54px;
+      display: block;
+      float: left;
+      cursor: pointer;
+      background-size: contain;
+      margin: 0 14px 0 0;
+      background-color: black;
+
+      &:last-of-type {
+        margin: 0;
+      }
+    }
+
+    .paglast {
+      background: $leftArrow;
+
+      &:hover {
+        background: $leftArrowHover;
+      }
+
+    }
+
+    // Leave for now - requires changing HTML
+    // scss-lint:disable SelectorFormat
+    .pagHome {
+      background: $index;
+
+      &:hover {
+        background: $indexHover;
+      }
+
+    }
+
+    .pagnext {
+      background: $rightArrow;
+
+      &:hover {
+        background: $rightArrowHover;
+      }
+
+    }
+  }
+}
+
+@include breakpoint('tablet') {
+
+  .my-work {
+
+    div[id=left-small] {
+      width: auto;
+      float: none;
+      display: inline-block;
+      margin: 0;
+      border: none;
+
+      article {
+        border-bottom: none;
+        margin: 0 0 15px 0;
+        padding: 0 0 15px 0;
+      }
+    }
+
+    div[id=right-large] {
+      // set width 100% instead of auto or images are not responsive on Firefox
+      width: 100%;
+      float: none;
+      display: inline-block;
+      padding: 0 0 0 0;
+
+      img {
+        margin: 0 0 50px 0;
+      }
+
+    }
+
+    .pagination {
+      border-top: 1px solid $boxBorder;
+      padding: 50px 0 0 0;
+      text-align: center;
+      width: 100%;
+    }
+
+    .project-box-one,
+    .project-box-two,
+    .project-box-three,
+    .project-box-four,
+    .project-box-five {
+      margin-bottom: 30px;
+    }
+
+    .project-box-six {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include breakpoint('mobile') {
+
+  .my-work {
+
+    div[id=left-small] {
+
+      article {
+        margin: 0 0 10px 0;
+        padding: 0 0 15px 0;
+      }
+    }
+
+    div[id=right-large] {
+      img {
+        margin: 0 0 40px 0;
+      }
+    }
+
+    .pagination {
+      padding: 40px 0 0 0;
+    }
+
+    .project-box-one,
+    .project-box-two,
+    .project-box-three,
+    .project-box-four,
+    .project-box-five {
+      margin-bottom: 20px;
+    }
+  }
+}

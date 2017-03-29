@@ -1,0 +1,160 @@
+div[id=container] {
+  width: 1366px;
+  margin: 10px auto;
+}
+
+div[id=left-large] {
+  width: 822px;
+  float: left;
+  display: inline;
+  margin: 0 32px 0 0;
+}
+
+div[id=left-small] {
+  width: 398px;
+  float: left;
+  display: inline;
+  margin: 0 32px 0 0;
+}
+
+div[id=right-large] {
+  width: 822px;
+  float: left;
+  display: inline;
+}
+
+div[id=right-small] {
+  width: 398px;
+  float: left;
+  display: inline;
+}
+
+div[id=main-content] {
+  padding: 40px 57px;
+}
+
+// My work
+
+[class*="project-box"] {
+  // three boxes per row on the desktop
+  width: 31%;
+  @include calc('width', '(100% / 3) - 24px');
+  height: 285px;
+  float: left;
+  border: 1px solid $boxBorder;
+  margin-right: 33px;
+  background-clip: content-box;
+  padding: 4px;
+  position: relative;
+  cursor: pointer;
+  @include transform(translate3d(0, 0, 0));
+  @include transitions(all 0.5s);
+
+  &:nth-of-type(3n) {
+    margin-right: 0;
+    background-clip: content-box;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    @include calc('width', '100% - 8px');
+    @include calc('height', '100% - 8px');
+    display: block;
+    background: $workBoxes;
+    opacity: 0;
+    @include transitions(opacity 0.5s);
+  }
+
+  &::after {
+    content: '';
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: $moreWork;
+    width: 55px;
+    height: 56px;
+    display: block;
+    opacity: 0;
+    @include transitions(opacity 0.5s);
+  }
+
+  &:hover::before {
+    opacity: 0.7;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+@include breakpoint('wide') {
+
+  div[id=container] {
+    width: 99%;
+  }
+
+  div[id=left-large] {
+    width: 65.65495207667732%;
+    margin: 0 2.5559105431309903% 0 0;
+  }
+
+  div[id=left-small] {
+    width: 31.789137380191697%;
+    margin: 0 2.5559105431309903% 0 0;
+  }
+
+  div[id=right-large] {
+    width: 65.65495207667732%;
+  }
+
+  div[id=right-small] {
+    width: 31.789137380191697%;
+  }
+
+  div[id=main-content] {
+    padding: 40px 2.5559105431309903%;
+  }
+
+  [class*="project-box"] {
+    height: 230px;
+  }
+}
+
+@include breakpoint('tablet') {
+
+  [class*="project-box"] {
+    height: 285px;
+    // only two boxes per row
+    @include calc('width', '(100% / 2) - 17px');
+    //override desktop defaults
+    &:nth-of-type(3n) {
+      margin-right: 33px;
+    }
+    // tablet margin
+    &:nth-of-type(2n) {
+      margin-right: 0;
+    }
+  }
+}
+
+@include breakpoint('mobile') {
+  [class*="project-box"] {
+    height: 285px;
+    // only two boxes per row
+    width: 100%;
+    //override desktop defaults
+    &:nth-of-type(3n) {
+      margin-right: 0;
+    }
+    // tablet margin
+    &:nth-of-type(2n) {
+      margin-right: 0;
+    }
+  }
+}
