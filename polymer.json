@@ -17,6 +17,37 @@
     "bower_components/webcomponentsjs/*.js"
   ],
   "lint": {
-    "rules": ["polymer-2"]
-  }
+    "rules": [
+      "polymer-2"
+    ]
+  },
+  "builds": [
+    {
+      "name": "bundled",
+      "insertPrefetchLinks": true,
+      "bundle": true,
+      "js": {
+        "minify": true
+      },
+      "css": {
+        "minify": true
+      },
+      "html": {
+        "minify": true
+      }
+    },
+    {
+      "name": "unbundled",
+      "insertPrefetchLinks": true,
+      "js": {
+        "minify": true
+      },
+      "css": {
+        "minify": true
+      },
+      "html": {
+        "minify": false
+      }
+    }
+  ]
 }

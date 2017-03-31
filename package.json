@@ -25,6 +25,7 @@
     "sass:dev": "node-sass sass/main.scss sass/style.css --output-style=expanded --source-comments --source-map-contents",
     "sass:watch": "node-sass --watch --recursive --output-style=expanded --source-comments --source-map-contents sass/ -o sass/",
     "postcss:dev": "postcss sass/main.css --config='postcss.config.js' --output css/main.css -m",
-    "postcss:watch": "postcss --watch sass/main.css --config='postcss.config.js' --output css/main.css -m"
+    "postcss:watch": "postcss --watch sass/main.css --config='postcss.config.js' --output css/main.css -m",
+    "build": "npm run test && polymer polymer build"
   }
 }
