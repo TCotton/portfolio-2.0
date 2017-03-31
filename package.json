@@ -8,6 +8,7 @@
     "eslint-config-google": "0.7.1",
     "eslint-plugin-html": "1.7.0",
     "node-sass": "4.5.2",
+    "nsp": "^2.6.3",
     "postcss": "5.2.16",
     "postcss-cli": "3.0.0",
     "postcss-fakeid": "1.0.2",
@@ -27,7 +28,8 @@
     "sass:watch": "node-sass --watch --recursive --output-style=expanded --source-comments --source-map-contents sass/ -o sass/",
     "postcss:dev": "postcss sass/main.css --config='postcss.config.js' --output css/main.css -m",
     "postcss:watch": "postcss --watch sass/main.css --config='postcss.config.js' --output css/main.css -m",
-    "build": "npm run test && polymer polymer build"
+    "build": "npm run test && polymer polymer build",
+    "security": "nsp check --output summary"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
@@ -35,6 +37,7 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "express-error-handler": "^1.1.0",
+    "google-feed-api": "0.0.2",
     "helmet": "^3.5.0",
     "helmet-csp": "^2.4.0",
     "method-override": "^2.3.8",
@@ -45,6 +48,8 @@
     "q": "^1.5.0",
     "rss": "^1.2.2",
     "serve-favicon": "^2.4.2",
-    "underscore": "^1.8.3"
+    "sitemap": "^1.11.1",
+    "underscore": "^1.8.3",
+    "winston": "^2.3.1"
   }
 }
