@@ -61,4 +61,6 @@ typings/
 
 src/scripts/libs/
 .gitignore
+server.js
+server/
 
