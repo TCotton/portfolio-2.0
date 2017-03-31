@@ -4,23 +4,23 @@
 
 'use strict';
 
-var gfeed = require('google-feed-api');
-var _ = require('underscore');
-var q = require('q');
-var Blog = require('../routes/models/blog_model');
-var moment = require('moment');
-var fs = require('fs');
-var async = require('async');
+const gfeed = require('google-feed-api');
+const _ = require('underscore');
+const q = require('q');
+const Blog = require('../routes/models/blog_model');
+const moment = require('moment');
+const fs = require('fs');
+const async = require('async');
 
-var _sortOldBlogPosts;
-var _totalArticlesCount;
-var _seoFriendly;
-var _addReviewImage;
-var _newBlogPosts;
-var _mergeBlogPosts;
-var _closeBlogComments;
-var _promiseWithArray;
-var _grabOldBlogPosts;
+const _sortOldBlogPosts;
+const _totalArticlesCount;
+const _seoFriendly;
+const _addReviewImage;
+const _newBlogPosts;
+const _mergeBlogPosts;
+const _closeBlogComments;
+const _promiseWithArray;
+const _grabOldBlogPosts;
 
 /**
  * Simple getter setter cache class
@@ -38,10 +38,10 @@ class BlogCacheClass {
   }
 }
 
-var OldBlogPosts = new BlogCacheClass();
-var OldBlogPostTotal = new BlogCacheClass();
+const OldBlogPosts = new BlogCacheClass();
+const OldBlogPostTotal = new BlogCacheClass();
 
-var createJSONFile = function() {
+const createJSONFile = function() {
 
   if (OldBlogPosts.cache) {
 
@@ -62,7 +62,7 @@ createJSONFile();
  * @constructor
  */
 
-var RSSClass = function() {
+const RSSClass = function() {
 
   /** Set defaults
    * Will come in handy to use later for getters setters or other requirements if needed
@@ -82,13 +82,13 @@ var RSSClass = function() {
    */
   _sortOldBlogPosts = (data) => {
 
-    var posts = data;
+    let posts = data;
 
     Object.keys(posts).forEach(function(key) {
 
       if (posts[key].publishedDate) {
 
-        var newDate;
+        let newDate;
 
         if (posts[key].publishedDate.match(/[a-zA-Z]/g)) {
           newDate = moment(posts[key].publishedDate).valueOf();
@@ -136,12 +136,12 @@ var RSSClass = function() {
   _seoFriendly = (data) => {
 
     // in this array are a liist of stopwords which have less SEO value
-    var stopwords = ['a', 'about', 'above', 'across', 'after', 'afterwards', 'again', 'against', 'all', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'amoungst', 'amount', 'an', 'and', 'another', 'any', 'anyhow', 'anyone', 'anything', 'anyway', 'anywhere', 'are', 'around', 'as', 'at', 'back', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'below', 'beside', 'besides', 'between', 'beyond', 'bill', 'both', 'bottom', 'but', 'by', 'call', 'can', 'cannot', 'cant', 'co', 'con', 'could', 'couldnt', 'cry', 'de', 'describe', 'detail', 'do', 'done', 'down', 'due', 'during', 'each', 'eg', 'eight', 'either', 'eleven', 'else', 'elsewhere', 'empty', 'enough', 'etc', 'even', 'ever', 'every', 'everyone', 'everything', 'everywhere', 'except', 'few', 'fifteen', 'fify', 'fill', 'find', 'fire', 'first', 'five', 'for', 'former', 'formerly', 'forty', 'found', 'four', 'from', 'front', 'full', 'further', 'get', 'give', 'go', 'had', 'has', 'hasnt', 'have', 'he', 'hence', 'her', 'here', 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'him', 'himself', 'his', 'how', 'however', 'hundred', 'ie', 'if', 'in', 'inc', 'indeed', 'interest', 'into', 'is', 'it', 'its', 'itself', 'keep', 'last', 'latter', 'latterly', 'least', 'less', 'ltd', 'made', 'many', 'may', 'me', 'meanwhile', 'might', 'mill', 'mine', 'more', 'moreover', 'most', 'mostly', 'move', 'much', 'must', 'my', 'myself', 'name', 'namely', 'neither', 'never', 'nevertheless', 'next', 'nine', 'no', 'nobody', 'none', 'noone', 'nor', 'not', 'nothing', 'now', 'nowhere', 'of', 'off', 'often', 'on', 'once', 'one', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'our', 'ours', 'ourselves', 'out', 'over', 'own', 'part', 'per', 'perhaps', 'please', 'put', 'rather', 're', 'same', 'see', 'seem', 'seemed', 'seeming', 'seems', 'serious', 'several', 'she', 'should', 'show', 'side', 'since', 'sincere', 'six', 'sixty', 'so', 'some', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhere', 'still', 'such', 'system', 'take', 'ten', 'than', 'that', 'the', 'their', 'them', 'themselves', 'then', 'thence', 'there', 'thereafter', 'thereby', 'therefore', 'therein', 'thereupon', 'these', 'they', 'thickv', 'thin', 'third', 'this', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'top', 'toward', 'towards', 'twelve', 'twenty', 'two', 'un', 'under', 'until', 'up', 'upon', 'us', 'very', 'via', 'was', 'we', 'well', 'were', 'what', 'whatever', 'when', 'whence', 'whenever', 'where', 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'with', 'within', 'without', 'would', 'yet', 'you', 'your', 'yours', 'yourself', 'yourselves', 'the'];
+    const stopwords = ['a', 'about', 'above', 'across', 'after', 'afterwards', 'again', 'against', 'all', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'amoungst', 'amount', 'an', 'and', 'another', 'any', 'anyhow', 'anyone', 'anything', 'anyway', 'anywhere', 'are', 'around', 'as', 'at', 'back', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'below', 'beside', 'besides', 'between', 'beyond', 'bill', 'both', 'bottom', 'but', 'by', 'call', 'can', 'cannot', 'cant', 'co', 'con', 'could', 'couldnt', 'cry', 'de', 'describe', 'detail', 'do', 'done', 'down', 'due', 'during', 'each', 'eg', 'eight', 'either', 'eleven', 'else', 'elsewhere', 'empty', 'enough', 'etc', 'even', 'ever', 'every', 'everyone', 'everything', 'everywhere', 'except', 'few', 'fifteen', 'fify', 'fill', 'find', 'fire', 'first', 'five', 'for', 'former', 'formerly', 'forty', 'found', 'four', 'from', 'front', 'full', 'further', 'get', 'give', 'go', 'had', 'has', 'hasnt', 'have', 'he', 'hence', 'her', 'here', 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'him', 'himself', 'his', 'how', 'however', 'hundred', 'ie', 'if', 'in', 'inc', 'indeed', 'interest', 'into', 'is', 'it', 'its', 'itself', 'keep', 'last', 'latter', 'latterly', 'least', 'less', 'ltd', 'made', 'many', 'may', 'me', 'meanwhile', 'might', 'mill', 'mine', 'more', 'moreover', 'most', 'mostly', 'move', 'much', 'must', 'my', 'myself', 'name', 'namely', 'neither', 'never', 'nevertheless', 'next', 'nine', 'no', 'nobody', 'none', 'noone', 'nor', 'not', 'nothing', 'now', 'nowhere', 'of', 'off', 'often', 'on', 'once', 'one', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'our', 'ours', 'ourselves', 'out', 'over', 'own', 'part', 'per', 'perhaps', 'please', 'put', 'rather', 're', 'same', 'see', 'seem', 'seemed', 'seeming', 'seems', 'serious', 'several', 'she', 'should', 'show', 'side', 'since', 'sincere', 'six', 'sixty', 'so', 'some', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhere', 'still', 'such', 'system', 'take', 'ten', 'than', 'that', 'the', 'their', 'them', 'themselves', 'then', 'thence', 'there', 'thereafter', 'thereby', 'therefore', 'therein', 'thereupon', 'these', 'they', 'thickv', 'thin', 'third', 'this', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'top', 'toward', 'towards', 'twelve', 'twenty', 'two', 'un', 'under', 'until', 'up', 'upon', 'us', 'very', 'via', 'was', 'we', 'well', 'were', 'what', 'whatever', 'when', 'whence', 'whenever', 'where', 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'with', 'within', 'without', 'would', 'yet', 'you', 'your', 'yours', 'yourself', 'yourselves', 'the'];
 
-    var oldPosts = data;
-    var regexNonAlphaNum = /[^\-a-z0-9]/g;
-    var regexWhiteSpace = /\s/gi;
-    var newTitle;
+    const oldPosts = data;
+    const regexNonAlphaNum = /[^\-a-z0-9]/g;
+    const regexWhiteSpace = /\s/gi;
+    let newTitle;
 
     Object.keys(oldPosts).forEach(function(key) {
 
@@ -156,8 +156,8 @@ var RSSClass = function() {
         // loop through the SEO watch words and replace with white space hyphen
         do {
 
-          var regEx = new RegExp('\\b\\s' + stopwords[x] + '\\s\\b', 'g');
-          var regExTwo = new RegExp('^' + stopwords[x] + '\\s\\b');
+          const regEx = new RegExp('\\b\\s' + stopwords[x] + '\\s\\b', 'g');
+          const regExTwo = new RegExp('^' + stopwords[x] + '\\s\\b');
 
           newTitle = newTitle.replace(regEx, '-').trim().replace(regExTwo, '');
 
@@ -189,11 +189,11 @@ var RSSClass = function() {
    */
   _addReviewImage = () => {
 
-    var oldPosts = this.blogs.BlogPosts;
-    var numImages = Object.keys(this.BLOG).length;
-    var imageArray = _.toArray(this.BLOG);
+    const oldPosts = this.blogs.BlogPosts;
+    const numImages = Object.keys(this.BLOG).length;
+    const imageArray = _.toArray(this.BLOG);
 
-    var x = -1;
+    const x = -1;
 
     Object.keys(oldPosts).forEach(function(key) {
 
@@ -255,7 +255,7 @@ var RSSClass = function() {
     this.totalOldArticles = Object.keys(data).length;
     this.oldBlogPosts = data;
 
-    var oldPosts = this.oldBlogPosts;
+    const oldPosts = this.oldBlogPosts;
 
     Object.keys(oldPosts).forEach(function(key) {
       oldPosts[key].commentsOpen = false;
@@ -275,8 +275,8 @@ var RSSClass = function() {
 
   _promiseWithArray = function(anArray) {
 
-    var returnedArray = [];
-    var getAnArray;
+    const returnedArray = [];
+    let getAnArray;
 
     anArray.forEach(function(firstResult) {
 
@@ -297,7 +297,7 @@ var RSSClass = function() {
 
   _grabOldBlogPosts = (url) => {
 
-    var deferred = q.defer();
+    const deferred = q.defer();
 
     fs.readFile(url, (err, data) => {
       if (err) {
@@ -354,7 +354,7 @@ RSSClass.prototype.blogItems = function(callback) {
 
 RSSClass.prototype.parseFeed = function(url, callback) {
 
-  var _this = this;
+  const _this = this;
 
   _grabOldBlogPosts(url).then(function(posts) {
 
@@ -424,7 +424,7 @@ module.exports = function(app) {
 
   app.get('/api/oldBlog/get', function(req, res) {
 
-    var OldBlogFeed = new RSSClass();
+    const OldBlogFeed = new RSSClass();
 
     OldBlogFeed.RSSFeed = req.query.RSSFeed;
     OldBlogFeed.BLOG = JSON.parse(req.query.BLOG);

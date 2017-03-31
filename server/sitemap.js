@@ -4,13 +4,13 @@
 
 'use strict';
 
-var sm = require('sitemap');
-var fs = require('fs');
-var Blog = require('./routes/models/blog_model');
-var _ = require('underscore');
-var tasks;
-var url;
-var sitemap;
+const sm = require('sitemap');
+const fs = require('fs');
+const Blog = require('./routes/models/blog_model');
+const _ = require('underscore');
+let tasks;
+let url;
+const sitemap;
 
 function addProjects() {
 
@@ -44,17 +44,17 @@ function getDataBasePosts(url) {
 
       Object.keys(blogs).forEach(function(key) {
 
-        var blogURl = '/blog/' + blogs[key].uniqueId + '/' + blogs[key].url;
+        const blogURl = '/blog/' + blogs[key].uniqueId + '/' + blogs[key].url;
 
         url.push({url: blogURl, changefreq: 'weekly', priority: 0.7});
 
       });
 
-      var cats;
+      let cats;
 
-      var _sortCategoriesByPopularity = function(blogs) {
+      const _sortCategoriesByPopularity = function(blogs) {
 
-        var newArray = {};
+        let newArray = {};
 
         _.chain(blogs)
           .pluck('category')
@@ -78,7 +78,7 @@ function getDataBasePosts(url) {
 
       Object.keys(cats).forEach(function(key) {
 
-        var blogURl = '/category/' + cats[key].toLowerCase();
+        const blogURl = '/category/' + cats[key].toLowerCase();
 
         url.push({url: blogURl, changefreq: 'weekly', priority: 0.5});
 
@@ -104,11 +104,11 @@ function getOldBlogPosts(url) {
           throw err;
         }
 
-        var posts = JSON.parse(data);
+        const posts = JSON.parse(data);
 
         Object.keys(posts).forEach(function(key) {
 
-          var blogURl = '/blog/' + posts[key].uniqueId + '/' + posts[key].url;
+          const blogURl = '/blog/' + posts[key].uniqueId + '/' + posts[key].url;
 
           url.push({url: blogURl, changefreq: 'monthly', priority: 0.7});
 
@@ -145,7 +145,7 @@ function next(err, result) {
     throw err;
   }
 
-  var currentTask = tasks.shift();
+  const currentTask = tasks.shift();
 
   if (currentTask) {
     currentTask(result);
