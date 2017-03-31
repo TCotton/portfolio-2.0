@@ -15,7 +15,8 @@
     "postcss-mq-keyframes": "^0.3.0",
     "postcss-scss": "^0.4.1",
     "postcss-single-charset": "^1.0.0",
-    "postcss-will-change": "^1.1.0"
+    "postcss-will-change": "^1.1.0",
+    "web-component-tester": "6.0.0-prerelease.5"
   },
   "scripts": {
     "lint": "eslint . --ext js,html --ignore-path .eslintignore",
